@@ -1,0 +1,668 @@
+:root {
+    /* Fonts */
+    --font-heading: 'Clash Display', sans-serif;
+    --font-body: 'General Sans', sans-serif;
+
+    /* Light Mode (Default) */
+    --bg-main: #FAFAF9;
+    /* Warm White */
+    --text-primary: #18181B;
+    /* Zinc 900 */
+    --text-secondary: #52525B;
+    /* Zinc 600 */
+    --text-muted: #A1A1AA;
+    /* Zinc 400 */
+    --accent: #18181B;
+    /* Black Accent */
+    --line: #E4E4E7;
+    /* Zinc 200 */
+    --hover-bg: #F4F4F5;
+    /* Zinc 100 */
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] {
+    /* Dark Mode Overrides */
+    --bg-main: #09090B;
+    /* Zinc 950 */
+    --text-primary: #E4E4E7;
+    /* Zinc 200 */
+    --text-secondary: #A1A1AA;
+    /* Zinc 400 */
+    --text-muted: #52525B;
+    /* Zinc 600 */
+    --accent: #E4E4E7;
+    /* White Accent */
+    --line: #27272A;
+    /* Zinc 800 */
+    --hover-bg: #18181B;
+    /* Zinc 900 */
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Flowing Lines Layout */
+.timeline-list,
+.project-list {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 1px solid var(--line);
+    margin-left: 1rem;
+}
+
+/* The Connector Dot */
+.card-item::before,
+.project-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    /* Calculates to sit exactly on the line: -2rem padding - 0.35rem offset center */
+    top: 2rem;
+    width: 10px;
+    height: 10px;
+    background-color: var(--bg-main);
+    border: 2px solid var(--text-muted);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 5;
+}
+
+/* Hover State for Dot */
+.card-item:hover::before,
+.project-item:hover::before {
+    background-color: var(--text-primary);
+    border-color: var(--text-primary);
+    transform: scale(1.5);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] .card-item:hover::before,
+[data-theme='dark'] .project-item:hover::before {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Adjust children spacing */
+.card-item,
+.project-item {
+    margin-bottom: 2rem;
+    /* Space between items */
+}
+
+/* Tweaks for Project Item placement */
+.project-item {
+    padding-left: 0;
+    /* Clear previous if any */
+}
+
+/* Remove border from last item? Optional, but keeping line full height is usually better flow. */
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.screen-split {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sidebar (Left) */
+.sticky-sidebar {
+    padding: 3rem 0;
+}
+
+.id-card .name {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.id-card .role {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.id-card .bio {
+    color: var(--text-secondary);
+    max-width: 300px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.sidebar-nav {
+    display: none;
+    /* Hidden on mobile */
+    margin-top: 4rem;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: max-content;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
+.nav-link .line {
+    width: 2rem;
+    height: 1px;
+    background-color: var(--text-muted);
+    transition: width 0.3s, background-color 0.3s;
+}
+
+.nav-link.active .line,
+.nav-link:hover .line {
+    width: 4rem;
+    background-color: var(--text-primary);
+}
+
+.sidebar-footer {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.socials {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.socials a {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.socials a:hover {
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+/* Floating Theme Toggle */
+.floating-controls {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.theme-btn-floating {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    color: var(--text-primary);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Elastic bounce */
+}
+
+.theme-btn-floating:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: var(--hover-bg);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.theme-btn-floating:active {
+    transform: scale(0.9);
+}
+
+.icon-container {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-sun,
+.icon-moon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s ease;
+}
+
+/* Icon Animation Logic */
+[data-theme='light'] .icon-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+
+[data-theme='light'] .icon-moon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+[data-theme='dark'] .icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+}
+
+[data-theme='dark'] .icon-sun {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+/* End Theme Toggle */
+
+
+.copyright {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    /* Push to right slightly if needed, or just regular padding */
+}
+
+
+/* Content Feed (Right) */
+.content-feed {
+    padding: 2rem 0 5rem 0;
+}
+
+.feed-section {
+    margin-bottom: 6rem;
+    scroll-margin-top: 4rem;
+}
+
+.mobile-heading {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    position: sticky;
+    top: 0;
+    background: var(--bg-main);
+    padding: 1rem 0;
+    z-index: 10;
+}
+
+.lead-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.highlight {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Cards (Experience) */
+.timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Rython Style: Hover Card Effect */
+.card-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
+}
+
+.card-item:hover {
+    background-color: var(--hover-bg);
+    /* box-shadow: var(--card-shadow); */
+    border-color: var(--line);
+}
+
+.card-date {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-sub {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tags span {
+    background-color: rgba(0, 0, 0, 0.05);
+    /* Adaptive via transparency */
+    color: var(--accent);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-weight: 500;
+}
+
+[data-theme='dark'] .tags span {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.resume-link-wrapper {
+    margin-top: 2rem;
+}
+
+.resume-link {
+    font-weight: 600;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.resume-link:hover {
+    text-decoration: underline;
+}
+
+.icon-inline {
+    width: 16px;
+    height: 16px;
+}
+
+/* Live Status Dot */
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #22c55e;
+    /* Green 500 */
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    position: relative;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
+/* 3D Tilt Cards */
+.card-item,
+.project-item {
+    position: relative;
+    /* Context for glare */
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    will-change: transform;
+    overflow: hidden;
+    /* Contain the glare */
+}
+
+/* Glare Effect */
+.glare {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    mix-blend-mode: overlay;
+    z-index: 10;
+}
+
+/* Adjust hover state specifically for tilt logic (JS handles transform) */
+.card-item:hover,
+.project-item:hover {
+    z-index: 20;
+    /* Pop out */
+}
+
+/* Projects */
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.project-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.project-item:hover {
+    background-color: var(--hover-bg);
+    border-color: var(--line);
+}
+
+.project-visual {
+    width: 100%;
+    height: 120px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+}
+
+.visual-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--hover-bg);
+}
+
+.visual-placeholder i {
+    width: 32px;
+    height: 32px;
+    color: var(--text-secondary);
+}
+
+.project-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.arrow-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+}
+
+.project-item:hover .arrow-icon {
+    transform: translate(2px, -2px);
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+/* Scroll Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    will-change: opacity, transform;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger Delays for Lists */
+.stagger-1 {
+    transition-delay: 100ms;
+}
+
+.stagger-2 {
+    transition-delay: 200ms;
+}
+
+.stagger-3 {
+    transition-delay: 300ms;
+}
+
+/* Section Transitions */
+.feed-section {
+    transition: opacity 0.5s ease;
+}
+
+@media (min-width: 1024px) {
+    .screen-split {
+        flex-direction: row;
+        gap: 4rem;
+    }
+
+    .sticky-sidebar {
+        width: 35%;
+        /* Fixed Percentage */
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5rem 0;
+    }
+
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .sidebar-nav {
+        display: flex;
+    }
+
+    .content-feed {
+        width: 65%;
+        padding: 5rem 0;
+    }
+
+    .mobile-heading {
+        display: none;
+        /* Hide headings on desktop if aiming for true feed style, or keep them? Rython keeps them but subtle. Let's hide sticky headers for cleaner look. */
+    }
+
+    /* Grid layout for project cards on desktop - optional */
+    .card-item,
+    .project-item {
+        grid-template-columns: 120px 1fr;
+        /* Date/Image on left, content right */
+        align-items: flex-start;
+    }
+
+    .project-visual {
+        height: 80px;
+        /* Smaller thumbnail */
+    }
+}
