@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aparna Mane | Senior Engineer</title>
+
+    <!-- Fonts: Clash Display (Headings) & General Sans (Body) -->
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=general-sans@200,300,400,500,600,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Split Screen Layout -->
+    <div class="screen-split container">
+
+        <!-- Left: Sticky Sidebar -->
+        <header class="sticky-sidebar">
+            <div class="sidebar-content">
+                <div class="id-card">
+                    <h1 class="name">
+                        Aparna Mane
+                        <span class="status-dot" title="Available for work"></span>
+                    </h1>
+                    <h2 class="role">Senior Software Engineer</h2>
+                    <p class="bio">
+                        I architect high-performance distributed systems and AI infrastructure.
+                        Currently optimizing millisecond-latency trading platforms at <strong>Morgan Stanley</strong>.
+                    </p>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="#about" class="nav-link active">
+                        <span class="line"></span>
+                        <span class="text">About</span>
+                    </a>
+                    <a href="#experience" class="nav-link">
+                        <span class="line"></span>
+                        <span class="text">Experience</span>
+                    </a>
+                    <a href="#projects" class="nav-link">
+                        <span class="line"></span>
+                        <span class="text">Projects</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="socials">
+                        <a href="https://github.com/aparna2198" target="_blank" aria-label="GitHub"><i
+                                data-lucide="github"></i></a>
+                        <a href="https://www.linkedin.com/in/aparna-rm/" target="_blank" aria-label="LinkedIn"><i
+                                data-lucide="linkedin"></i></a>
+                        <a href="mailto:aparna.code98@gmail.com" aria-label="Email"><i data-lucide="mail"></i></a>
+                    </div>
+
+                    <!-- Small hint for personality -->
+                    <p class="copyright">© 2025</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Floating Controls (Top Right) -->
+        <div class="floating-controls">
+            <button id="theme-toggle" class="theme-btn-floating" aria-label="Toggle Theme">
+                <div class="icon-container">
+                    <i data-lucide="sun" class="icon-sun"></i>
+                    <i data-lucide="moon" class="icon-moon"></i>
+                </div>
+            </button>
+        </div>
+
+        <!-- Right: Scrollable Feed -->
+        <main class="content-feed">
+
+            <!-- About Section -->
+            <section id="about" class="feed-section">
+                <p class="lead-text">
+                    Back in 2020, I started building real-time auction portals, fascinated by how code could orchestrate
+                    complex human interactions. Fast forward to today, and I've had the privilege of building software
+                    for a <strong>logistics unicorn</strong>, a <strong>fintech startup</strong>, and now a
+                    <strong>global investment bank</strong>.
+                </p>
+                <p>
+                    My main focus these days is building <strong class="highlight">resilient distributed
+                        systems</strong> and integrating <strong>GenAI</strong> into enterprise workflows. I thrive
+                    where engineering meets "it needs to scale to millions."
+                </p>
+                <p>
+                    When I'm not at the terminal, I'm likely exploring open-source tools or configuring cloud
+                    infrastructure on Azure.
+                </p>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="feed-section">
+                <h3 class="mobile-heading">Experience</h3>
+
+                <div class="timeline-list">
+                    <!-- Role 1 -->
+                    <div class="card-item group">
+                        <div class="card-date">Apr 2022 — Present</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Senior Software Engineer · Morgan Stanley</h3>
+                            <p class="card-sub">Python, FastAPI, Azure, Kafka, Redis</p>
+                            <p class="card-desc">
+                                Engineered a fault-tolerant trading platform handling millions of high-risk transactions
+                                daily with sub-millisecond latency.
+                                Spearheaded an optimization initiative that reduced query processing time by <strong
+                                    class="highlight">86%</strong> (16s → 3s).
+                                Mentored junior developers and migrated legacy auth systems to OAuth 2.0.
+                            </p>
+                            <div class="tags">
+                                <span>System Design</span>
+                                <span>Optimization</span>
+                                <span>Mentorship</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role 2 -->
+                    <div class="card-item group">
+                        <div class="card-date">Jan 2022 — Apr 2022</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Software Engineer · IDfy</h3>
+                            <p class="card-sub">Rest APIs, Integration</p>
+                            <p class="card-desc">
+                                Redesigned core REST APIs for HRMS integrations, significantly reducing integration time
+                                for new enterprise clients.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Role 3 -->
+                    <div class="card-item group">
+                        <div class="card-date">Jul 2020 — Jan 2022</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Associate Software Engineer · LogisticsNow</h3>
+                            <p class="card-sub">C#, Azure, SignalR, SQL</p>
+                            <p class="card-desc">
+                                Developed a real-time procurement auction portal that saved clients up to <strong
+                                    class="highlight">30%</strong> in logistics costs. Implement database sharding to
+                                scale vertically across multiple servers.
+                            </p>
+                            <div class="tags">
+                                <span>Real-time</span>
+                                <span>Azure</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-link-wrapper">
+                    <a href="#" class="resume-link">View Full Resume <i data-lucide="arrow-up-right"
+                            class="icon-inline"></i></a>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="feed-section">
+                <h3 class="mobile-heading">Projects</h3>
+
+                <div class="project-list">
+
+                    <!-- Project 1 -->
+                    <a href="#" class="project-item group">
+                        <div class="project-visual">
+                            <!-- Placeholder for project image, using CSS gradient/icon for now -->
+                            <div class="visual-placeholder hue-1">
+                                <i data-lucide="sparkles"></i>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title">GenAI Configo <i data-lucide="arrow-up-right"
+                                    class="arrow-icon"></i></h3>
+                            <p class="project-desc">
+                                An intelligent configuration assistant powered by OpenAI. Allows users to configure
+                                complex CDB baskets using natural language commands.
+                            </p>
+                            <div class="tags">
+                                <span>OpenAI</span>
+                                <span>FastAPI</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Project 2 -->
+                    <a href="#" class="project-item group">
+                        <div class="project-visual">
+                            <div class="visual-placeholder hue-2">
+                                <i data-lucide="bar-chart-2"></i>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title">Dynamic Dashboard <i data-lucide="arrow-up-right"
+                                    class="arrow-icon"></i></h3>
+                            <p class="project-desc">
+                                High-throughput analytics backend using Kafka and MongoDB. Reducing query times by 75%
+                                for real-time stock analysis.
+                            </p>
+                            <div class="tags">
+                                <span>Kafka</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Project 3 -->
+                    <a href="#" class="project-item group">
+                        <div class="project-visual">
+                            <div class="visual-placeholder hue-3">
+                                <i data-lucide="gavel"></i>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title">Auction Portal <i data-lucide="arrow-up-right"
+                                    class="arrow-icon"></i></h3>
+                            <p class="project-desc">
+                                Scalable real-time bidding system on Azure. Supporting concurrent users with live price
+                                updates via SignalR.
+                            </p>
+                            <div class="tags">
+                                <span>Real-time</span>
+                                <span>SignalR</span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <footer class="mobile-footer">
+                <p>© 2025 Aparna Mane</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

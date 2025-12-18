@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aparna | Portfolio</title>
+    <meta name="description" content="Portfolio of Aparna - Developer & Creator">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons (via unpkg) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Elements -->
+    <div class="bg-gradient"></div>
+    <div class="bg-blur"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Aparna<span class="dot">.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact" class="btn-primary">Contact Me</a></li>
+            </ul>
+            <div class="nav-controls" style="display: flex; align-items: center; gap: 1rem;">
+                <button class="theme-toggle" aria-label="Toggle Theme">
+                    <i data-lucide="sun"></i>
+                </button>
+                <div class="mobile-menu-btn">
+                    <i data-lucide="menu"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge">Available for work</span>
+                <h1 class="hero-title">Aparna Mane <br> <span class="text-gradient">Senior Software Engineer</span></h1>
+                <p class="hero-subtitle">Backend & Cloud Specialist experienced in building high-performance, scalable
+                    microservices and AI-driven applications.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-primary">View Work <i data-lucide="arrow-right"></i></a>
+                    <a href="#contact" class="btn-secondary">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Abstract 3D-like shape or profile image placeholder -->
+                <div class="visual-circle"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I am a Senior Software Engineer at Morgan Stanley with over 5 years of experience in architecting
+                        and delivering critical financial platforms. My expertise lies in Python (FastAPI), Cloud
+                        Computing (Azure), and Distributed Systems (Kafka, Redis).</p>
+                    <p>I have a strong track record of optimizing system performance, reducing latency by up to 86%, and
+                        modernizing legacy applications. Passionate about Generative AI and building intuitive tools
+                        that solve real-world problems.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Exp.</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-container">
+                    <h3>Tech Stack</h3>
+                    <div class="skills-tags">
+                        <span>Python</span>
+                        <span>FastAPI</span>
+                        <span>Azure</span>
+                        <span>Kafka</span>
+                        <span>MongoDB</span>
+                        <span>Redis</span>
+                        <span>Kubernetes</span>
+                        <span>Docker</span>
+                        <span>GenAI/LLM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project Card 1 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="img-placeholder" style="background: linear-gradient(45deg, #10b981, #059669);">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>GenAI Configo</h3>
+                        <p>AI-powered configuration assistant using OpenAI LLM to guide users in configuring
+                            personalized CDB baskets.</p>
+                        <div class="project-tags">
+                            <span>OpenAI</span>
+                            <span>FastAPI</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project Card 2 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="img-placeholder" style="background: linear-gradient(45deg, #3b82f6, #2563eb);">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Dynamic Dashboard</h3>
+                        <p>High-performance dashboard backend reducing query time by 75% using FastAPI and Kafka.</p>
+                        <div class="project-tags">
+                            <span>FastAPI</span>
+                            <span>MongoDB</span>
+                            <span>Kafka</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project Card 3 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="img-placeholder" style="background: linear-gradient(45deg, #f59e0b, #d97706);">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Auction Portal</h3>
+                        <p>Real-time procurement auction portal with SignalR and Redis, saving clients up to 30%.</p>
+                        <div class="project-tags">
+                            <span>Azure</span>
+                            <span>SignalR</span>
+                            <span>Redis</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project Card 4 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="img-placeholder" style="background: linear-gradient(45deg, #8b5cf6, #7c3aed);">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Cloud Migration</h3>
+                        <p>Migrated on-prem services to Azure AKS, implementing OAuth2 and auto-scaling.</p>
+                        <div class="project-tags">
+                            <span>Azure AKS</span>
+                            <span>OAuth2</span>
+                            <span>Docker</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="resume-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">April 2022 - Present</div>
+                    <div class="timeline-content">
+                        <h3>Senior Software Engineer</h3>
+                        <span class="company">Morgan Stanley</span>
+                        <p>Leading development of fault-tolerant trading platforms and implementing OAuth 2.0 security.
+                            Optimized query processing time by 86% and mentored junior developers.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2022 - April 2022</div>
+                    <div class="timeline-content">
+                        <h3>Software Engineer</h3>
+                        <span class="company">IDfy</span>
+                        <p>Redesigned core REST APIs for HRMS integrations, reducing client integration time.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">July 2020 - Jan 2022</div>
+                    <div class="timeline-content">
+                        <h3>Associate Software Engineer</h3>
+                        <span class="company">LogisticsNow</span>
+                        <p>Developed scalable procurement auction portals and implemented database sharding, handling
+                            increased traffic loads.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container contact-container">
+            <div class="contact-text">
+                <h2 class="section-title">Let's Work Together</h2>
+                <p>Have a project in mind or just want to say hi? Feel free to reach out.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="GitHub"><i data-lucide="github"></i></a>
+                    <a href="mailto:aparna.code98@gmail.com" aria-label="Email"><i data-lucide="mail"></i></a>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Aparna Mane. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

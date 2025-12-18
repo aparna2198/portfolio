@@ -1,10 +1,6 @@
-# Astro Starter Kit: Minimal
+# Portfolio Website
 
-```sh
-npm create astro@latest -- --template minimal
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+This is the repository for my personal portfolio website, built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
 
 ## 🚀 Project Structure
 
