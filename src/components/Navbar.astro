@@ -1,0 +1,38 @@
+---
+const links = [
+  { name: "Home", href: "/" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
+];
+---
+
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+  <div class="flex items-center gap-1 p-2 rounded-full border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md shadow-2xl shadow-accent/5">
+    
+    <!-- Profile Image -->
+    <a href="/" class="block shrink-0 p-1">
+      <div class="w-10 h-10 rounded-full overflow-hidden border border-white/10">
+        <img 
+          src="/profile.jpeg" 
+          alt="Profile" 
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </a>
+
+    <!-- Navigation Links -->
+    <div class="flex items-center gap-1 px-4">
+      {links.map(link => (
+        <a 
+          href={link.href} 
+          class="px-4 py-2 text-sm font-medium text-secondary hover:text-white hover:bg-white/5 rounded-full transition-all duration-300"
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+
+  </div>
+</nav>
