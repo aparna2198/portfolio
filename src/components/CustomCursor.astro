@@ -1,0 +1,31 @@
+
+<div id="cursor-dot" class="fixed top-0 left-0 w-1 h-1 bg-accent rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out -translate-x-1/2 -translate-y-1/2 opacity-0 hidden md:block"></div>
+
+<script>
+  function initCursor() {
+    const dot = document.getElementById('cursor-dot');
+    
+    if (!dot) return;
+
+    const moveCursor = (e: MouseEvent) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      dot.style.opacity = '1';
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    };
+
+    window.addEventListener('mousemove', moveCursor);
+  }
+
+  // Init on load
+  initCursor();
+  // Re-init on view transition
+  document.addEventListener('astro:after-swap', initCursor);
+</script>
+
+<style>
+  #cursor-dot {
+    will-change: transform;
+  }
+</style>

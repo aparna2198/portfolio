@@ -11,9 +11,79 @@ const Tag = href ? 'a' : 'div';
 <Tag 
   href={href}
   class:list={[
-    "block p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.1)] hover:-translate-y-1 group",
+    "card-tilt relative block p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(34,197,94,0.15)] group spotlight-container interactive",
     className
   ]}
 >
-  <slot />
+  <div class="spotlight"></div>
+  <div class="glare"></div>
+  <div class="relative z-10">
+    <slot />
+  </div>
 </Tag>
+
+<script>
+  function initTilt() {
+    const cards = document.querySelectorAll('.card-tilt');
+    
+    cards.forEach(card => {
+      const glare = card.querySelector('.glare') as HTMLElement;
+
+      card.addEventListener('mousemove', (e: any) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Intensified tilt (was /10, now /8)
+        const rotateX = (y - centerY) / 8;
+        const rotateY = (centerX - x) / 8;
+        
+        card.style.setProperty('--x', `${(x / rect.width) * 100}%`);
+        card.style.setProperty('--y', `${(y / rect.height) * 100}%`);
+        
+        (card as HTMLElement).style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        
+        if (glare) {
+          glare.style.opacity = '1';
+          glare.style.transform = `translate(${x - rect.width/2}px, ${y - rect.height/2}px)`;
+        }
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        (card as HTMLElement).style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
+        if (glare) {
+          glare.style.opacity = '0';
+        }
+      });
+    });
+  }
+
+  initTilt();
+  document.addEventListener('astro:after-swap', initTilt);
+</script>
+
+<style>
+  .card-tilt {
+    transition: transform 0.15s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+  }
+
+  .glare {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    mix-blend-mode: soft-light;
+    transition: opacity 0.3s ease;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+</style>

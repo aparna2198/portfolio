@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="80" fill="#003300"/>
+  
+  <!-- Silicon Texture -->
+  <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#004400" stroke-width="1"/>
+  </pattern>
+  <rect width="512" height="512" rx="80" fill="url(#grid)"/>
+  
+  <!-- Gold Pins -->
+  <rect x="60" y="60" width="392" height="392" stroke="#d4af37" stroke-width="4" fill="none"/>
+  <path d="M60 60 L120 120 M452 60 L392 120 M60 452 L120 392 M452 452 L392 392" stroke="#d4af37" stroke-width="2"/>
+  
+  <!-- Center Die -->
+  <rect x="136" y="136" width="240" height="240" rx="20" fill="#111" stroke="#444" stroke-width="4"/>
+  
+  <!-- Circuit Traces -->
+  <path d="M256 136 V 60 M136 256 H 60 M376 256 H 452 M256 376 V 452" stroke="#d4af37" stroke-width="10" opacity="0.6"/>
+  <path d="M200 136 V 100 H 100 V 200 H 60" stroke="#d4af37" stroke-width="6" fill="none" opacity="0.6"/>
+  
+  <!-- Text -->
+  <text x="50%" y="54%" font-family="monospace" font-weight="bold" font-size="120" fill="#22c55e" text-anchor="middle" dy=".2em" letter-spacing="5">AM</text>
+  <text x="256" y="320" font-family="monospace" font-size="20" fill="#666" text-anchor="middle">CPU_ARCH_64</text>
+</svg>

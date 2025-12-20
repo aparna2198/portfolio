@@ -1,0 +1,198 @@
+---
+const profileImage = "/profile-photo.jpg";
+---
+
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" />
+
+<div class="location-tile relative w-full h-[300px] md:h-[400px] rounded-3xl overflow-hidden border border-white/10 bg-[#0a0a0a] group spotlight-container reveal">
+  <!-- Map Background -->
+  <div id="map" class="absolute inset-0 opacity-60"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent pointer-events-none z-10"></div>
+
+  <!-- Content Layer -->
+  <div class="relative z-10 w-full h-full p-8 flex flex-col justify-between">
+    
+    <!-- Top Info: Time -->
+    <div class="flex items-start">
+      <div class="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+        </span>
+        <span id="ist-clock" class="text-xs font-mono font-medium tracking-tight">--:-- -- IST</span>
+      </div>
+    </div>
+
+    <!-- Middle/Bottom Text -->
+    <div class="max-w-md">
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-2 leading-tight">
+        Hello, <br/>
+        I'm <span class="text-accent">Aparna.</span>
+      </h2>
+      <p class="text-secondary text-sm md:text-base font-medium flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Mumbai, India
+      </p>
+    </div>
+
+    <!-- Floating Profile Picture (Bottom Right) -->
+    <div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 w-24 h-32 md:w-32 md:h-44 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl rotate-3 group-hover:rotate-0 transition-all duration-500 bg-gray-900 group-hover:scale-105 z-20">
+      <img 
+        src={profileImage} 
+        alt="Aparna Portrait" 
+        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    </div>
+  </div>
+
+  <div class="spotlight"></div>
+</div>
+
+<script>
+  import maplibregl from 'maplibre-gl';
+
+  function updateISTClock() {
+    const clockEl = document.getElementById('ist-clock');
+    if (!clockEl) return;
+
+    const options = {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+
+    const update = () => {
+      const now = new Date();
+      const timeStr = new Intl.DateTimeFormat('en-US', options).format(now);
+      clockEl.innerText = `${timeStr} IST`;
+    };
+
+    update();
+    setInterval(update, 1000);
+  }
+
+  function initMap() {
+    const container = document.getElementById('map');
+    if (!container || container.dataset.initialized) return;
+    container.dataset.initialized = 'true';
+
+    // Clear previous map if any
+    container.innerHTML = '';
+
+    // Coordinates for Mumbai
+    const mumbaiLandmark = [72.8677, 19.0500];   // 19.0500° N, 72.8677° E
+    const mumbaiHeart = [72.885, 19.010];      // Balanced centering for the region
+
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://tiles.basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+      center: [72.85, 19.1], // Start slightly north
+      zoom: 2,
+      attributionControl: false,
+      interactive: false
+    });
+
+    map.on('load', () => {
+      map.resize();
+
+      const el = document.createElement('div');
+      el.className = 'map-marker';
+      
+      const dot = document.createElement('div');
+      dot.className = 'map-marker-dot';
+      
+      const pulse = document.createElement('div');
+      pulse.className = 'map-marker-pulse';
+      
+      el.appendChild(dot);
+      el.appendChild(pulse);
+
+      new maplibregl.Marker({ element: el })
+        .setLngLat(mumbaiLandmark)
+        .addTo(map);
+
+      // Animation: zoom into the heart of the city
+      setTimeout(() => {
+        map.flyTo({
+          center: mumbaiHeart,
+          zoom: 11,
+          speed: 1.2,
+          curve: 1,
+          essential: true
+        });
+      }, 500);
+    });
+  }
+
+  // Initialize on load
+  updateISTClock();
+  initMap();
+
+  // Re-initialize after Astro view transitions
+  document.addEventListener('astro:after-swap', () => {
+    updateISTClock();
+    initMap();
+  });
+</script>
+
+<style is:global>
+  .map-marker {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .map-marker-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #22c55e; /* Use hex instead of var for marker */
+    border-radius: 50%;
+    z-index: 2;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+  }
+  .map-marker-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #22c55e;
+    border-radius: 50%;
+    animation: marker-pulse 2s infinite;
+    z-index: 1;
+    opacity: 0.5;
+  }
+  @keyframes marker-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+</style>
+
+<style>
+  .location-tile {
+    perspective: 1000px;
+  }
+  
+  .location-tile:hover {
+     border-color: rgba(34, 197, 94, 0.3);
+  }
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+
+  :global(.maplibregl-canvas) {
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>

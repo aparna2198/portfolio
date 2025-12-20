@@ -6,10 +6,12 @@ const links = [
   { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];
+
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50">
-  <div class="flex items-center gap-1 p-2 rounded-full border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md shadow-2xl shadow-accent/5">
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-fit px-4">
+  <div class="flex items-center gap-1 p-2 rounded-full border border-primary/10 bg-background/60 backdrop-blur-xl shadow-2xl shadow-accent/5">
     
     <!-- Profile Image -->
     <a href="/" class="block shrink-0 p-1">
@@ -32,6 +34,14 @@ const links = [
           {link.name}
         </a>
       ))}
+    </div>
+
+    <!-- Divider -->
+    <div class="w-[1px] h-6 bg-white/10 mx-1"></div>
+
+    <!-- Theme Toggle -->
+    <div class="px-2">
+      <ThemeToggle />
     </div>
 
   </div>
