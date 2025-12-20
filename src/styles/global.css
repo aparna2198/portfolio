@@ -6,8 +6,8 @@
   --color-accent: #22c55e;
   --color-background: var(--background);
 
-  --font-display: "Comic Sans MS", "Comic Sans", cursive;
-  --font-body: "Comic Sans MS", "Comic Sans", cursive;
+  --font-display: "Garamond", "EB Garamond", "Georgia", serif;
+  --font-body: "Garamond", "EB Garamond", "Georgia", serif;
 }
 
 :root {
