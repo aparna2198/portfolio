@@ -1,48 +1,14 @@
 ---
-const links = [
-  { name: "Home", href: "/" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
-];
-
-import ThemeToggle from './ThemeToggle.astro';
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-fit px-4">
-  <div class="flex items-center gap-1 p-2 rounded-full border border-primary/10 bg-background/60 backdrop-blur-xl shadow-2xl shadow-accent/5">
-    
-    <!-- Profile Image -->
-    <a href="/" class="block shrink-0 p-1">
-      <div class="w-10 h-10 rounded-full overflow-hidden border border-white/10">
-        <img 
-          src="/profile.jpeg" 
-          alt="Profile" 
-          class="w-full h-full object-cover"
-        />
-      </div>
-    </a>
-
-    <!-- Navigation Links -->
-    <div class="flex items-center gap-1 px-4">
-      {links.map(link => (
-        <a 
-          href={link.href} 
-          class="px-4 py-2 text-sm font-medium text-secondary hover:text-white hover:bg-white/5 rounded-full transition-all duration-300"
-        >
-          {link.name}
-        </a>
-      ))}
-    </div>
-
-    <!-- Divider -->
-    <div class="w-[1px] h-6 bg-white/10 mx-1"></div>
-
+<nav class="fixed top-6 right-6 z-50">
+  <div
+    class="flex items-center p-2 rounded-full border border-primary/10 bg-background/60 backdrop-blur-xl shadow-2xl shadow-accent/5"
+  >
     <!-- Theme Toggle -->
     <div class="px-2">
       <ThemeToggle />
     </div>
-
   </div>
 </nav>

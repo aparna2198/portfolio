@@ -6,36 +6,134 @@ import LocationTile from "../components/LocationTile.astro";
 // Placeholder data - To be replaced with resume content
 const experience = [
   {
-    role: "Senior Software Engineer",
-    company: "Tech Giant Corp",
-    period: "2023 - Present",
+    role: "Software Engineer",
+    company: "Morgan Stanley",
+    period: "2022 - Present",
     desc: "Leading backend architecture and scaling distributed systems.",
   },
   {
-    role: "Software Engineer",
-    company: "Innovative Startup",
-    period: "2021 - 2023",
-    desc: "Built full-stack features and optimized CI/CD pipelines.",
+    role: "Associate Software Engineer",
+    company: "LogisticsNow",
+    period: "2020 - 2022",
+    desc: "Engineered real-time auction platforms powering transparent freight logistics.",
   },
 ];
 
 const projects = [
   {
-    title: "Portfolio Website",
-    tech: ["Astro", "Tailwind", "React"],
-    desc: "A performant, dark-themed portfolio website inspired by modern design trends.",
+    title: "GenAI Config Assistant",
+    tech: ["FastAPI", "OpenAI", "JupyterLab", "Kafka"],
+    desc: "A prompt-engineered assistant using OpenAI LLMs that understands natural-language instructions and helps traders automate the creation of stock baskets.",
   },
   {
-    title: "Market Whisperer",
-    tech: ["python", "AI", "FastAPI"],
-    desc: "AI-powered market analysis tool providing sentiment insights.",
+    title: "Dynamic Dashboards Platform",
+    tech: ["FastAPI", "OAuth2/OIDC", "MongoDB", "Kafka", "Jenkins"],
+    desc: "A low-latency backend powering real-time dashboards with secure OAuth2 auth, Kafka-based instrumentation, and full ESM observability.",
+  },
+  {
+    title: "On-Prem → Cloud Migration",
+    tech: ["Azure AKS", "Kubernetes", "FastAPI", "OAuth2", "API Gateway"],
+    desc: "A production-grade migration of compute workloads to Azure Kubernetes Service with secure API-gateway routing and autoscaling efficiency.",
+  },
+  {
+    title: "High-Speed Data Transfer Layer",
+    tech: ["gRPC", "Apache Flight", "Python", "FastAPI"],
+    desc: "Replaced REST with gRPC + Apache Flight to enable high-speed columnar data transport, boosting throughput by ~60%.",
+  },
+  {
+    title: "Real-Time Streaming & CDC Pipelines",
+    tech: ["Kafka", "Flink", "Delta Lake Store"],
+    desc: "Designed fault-tolerant distributed pipelines using Kafka + Flink for CDC, synchronizing systems in real-time.",
+  },
+  {
+    title: "High-Performance Authorization Layer",
+    tech: ["Redis", "FastAPI", "Python"],
+    desc: "A Redis-powered write-around caching system for entitlement checks, cutting latency from ~203 ms to ~3.5 ms (≈58× improvement).",
+  },
+  {
+    title: "Real-Time Auction Platform",
+    tech: ["Azure Functions", "Cosmos DB", "Redis", "SignalR"],
+    desc: "A scalable auction system using serverless compute, real-time bidding updates, caching, and Cosmos DB autoscaling.",
+  },
+  {
+    title: "Fuel Normalization Automation",
+    tech: ["Azure Functions", "Cosmos DB", "MongoDB"],
+    desc: "Fully automated Excel-driven processes with Blob triggers + Cosmos DB updates, eliminating manual intervention for rate adjustments.",
+  },
+  {
+    title: "OAuth2 Security Upgrade",
+    tech: ["OAuth2", "Security", "Cloud Infra"],
+    desc: "Migrated legacy Kerberos authentication to OAuth2, enforcing token-based access and strengthening cross-system data governance.",
+  },
+];
+
+const skillCategories = [
+  {
+    title: "Languages",
+    skills: [
+      { name: "C++", icon: "💻" },
+      { name: "Python", icon: "🐍" },
+      { name: "Ruby on Rails", icon: "💎" },
+    ],
+  },
+  {
+    title: "Web Frameworks",
+    skills: [
+      { name: "FastAPI", icon: "⚡" },
+      { name: "Gunicorn", icon: "🦄" },
+      { name: "Uvicorn", icon: "✨" },
+    ],
+  },
+  {
+    title: "Cloud & Infrastructure",
+    skills: [
+      { name: "Azure Cloud", icon: "☁️" },
+      { name: "Azure DevOps", icon: "🚀" },
+      { name: "Docker", icon: "🐳" },
+      { name: "Flink", icon: "🐿️" },
+      { name: "GenAI", icon: "🧠" },
+      { name: "Jenkins", icon: "🤵" },
+      { name: "Kafka", icon: "📨" },
+      { name: "Kubernetes", icon: "☸️" },
+      { name: "Redis", icon: "🧠" },
+      { name: "SSL/TLS", icon: "🔒" },
+      { name: "Zookeeper", icon: "🦁" },
+    ],
+  },
+  {
+    title: "Data Systems & Technologies",
+    skills: [
+      { name: "Apache Arrow", icon: "🏹" },
+      { name: "Apache Flight", icon: "✈️" },
+      { name: "Apache Parquet", icon: "📦" },
+      { name: "MongoDB", icon: "🍃" },
+      { name: "MySQL", icon: "🐬" },
+    ],
+  },
+  {
+    title: "Authentication & Security",
+    skills: [
+      { name: "OAuth2", icon: "🔑" },
+      { name: "OIDC", icon: "🆔" },
+      { name: "SSL/TLS", icon: "🔒" },
+    ],
+  },
+  {
+    title: "Version Control & Tools",
+    skills: [
+      { name: "Git", icon: "🌿" },
+      { name: "Jupyter Server", icon: "🪐" },
+      { name: "Postman", icon: "🚀" },
+      { name: "Splunk", icon: "🔍" },
+      { name: "VS Code", icon: "📝" },
+    ],
   },
 ];
 ---
 
 <Layout title="Aparna | Portfolio">
   <!-- Hero Section -->
-  <section class="mb-20 pt-10">
+  <section class="mb-8 pt-10">
     <div class="grid gap-6">
       <!-- Main Status/Location Tile -->
       <LocationTile />
@@ -45,34 +143,20 @@ const projects = [
         <!-- Bio Text - Centered -->
         <div class="text-center">
           <p class="text-secondary max-w-2xl text-lg leading-relaxed mx-auto">
-            I'm <span class="text-primary font-semibold">Aparna</span>, a
-            developer passionate about building scalable software and intuitive
-            user interfaces. Currently specializing in Python backend systems
-            and modern web technologies.
+            I describe myself as a fanatical coder fueled by curiosity. What
+            began as a self-taught journey has evolved into 5+ years of
+            engineering experience—architecting high-performance backend
+            systems, real-time data engines, and large-scale APIs, while
+            actively contributing to open-source.
           </p>
-        </div>
-
-        <div class="flex flex-wrap gap-4">
-          <a
-            href="#contact"
-            class="px-8 py-4 bg-primary text-background font-bold rounded-full hover:scale-105 transition-transform"
-          >
-            Contact Me
-          </a>
-          <a
-            href="#projects"
-            class="px-8 py-4 border border-primary/20 rounded-full hover:border-accent hover:text-accent transition-all"
-          >
-            View Work
-          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Vertical Connector -->
-  <div class="flex justify-center mb-20">
-    <div class="w-[1px] h-20 bg-gradient-to-b from-accent/50 to-transparent">
+  <div class="flex justify-center mb-8">
+    <div class="w-[1px] h-10 bg-gradient-to-b from-accent/50 to-transparent">
     </div>
   </div>
 
@@ -156,29 +240,25 @@ const projects = [
       <h2 class="text-3xl font-bold">Skills</h2>
       <div class="h-[1px] bg-white/10 flex-grow ml-6"></div>
     </div>
-    <div
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
-    >
+    <div class="space-y-12">
       {
-        [
-          { name: "Python", icon: "🐍" },
-          { name: "FastAPI", icon: "⚡" },
-          { name: "Astro", icon: "🚀" },
-          { name: "React", icon: "⚛️" },
-          { name: "Docker", icon: "🐋" },
-          { name: "ML", icon: "🤖" },
-          { name: "System Design", icon: "🏗️" },
-          { name: "Tailwind", icon: "🎨" },
-          { name: "Git", icon: "🌿" },
-          { name: "PostgreSQL", icon: "🐘" },
-        ].map((skill) => (
-          <div class="group flex flex-col items-center p-4 bg-white/5 rounded-2xl border border-white/10 hover:border-accent hover:bg-accent/5 transition-all duration-300 interactive cursor-default hover:-translate-y-1">
-            <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">
-              {skill.icon}
-            </span>
-            <span class="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
-              {skill.name}
-            </span>
+        skillCategories.map((category) => (
+          <div>
+            <h3 class="text-xl font-bold mb-6 text-accent pl-2 border-l-2 border-accent">
+              {category.title}
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {category.skills.map((skill) => (
+                <div class="group flex flex-col items-center p-4 bg-white/5 rounded-2xl border border-white/10 hover:border-accent hover:bg-accent/5 transition-all duration-300 interactive cursor-default hover:-translate-y-1">
+                  <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">
+                    {skill.icon}
+                  </span>
+                  <span class="text-sm font-medium text-secondary group-hover:text-primary transition-colors text-center">
+                    {skill.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         ))
       }
@@ -193,7 +273,7 @@ const projects = [
       opportunities to be part of your visions.
     </p>
     <a
-      href="mailto:hello@aparna.dev"
+      href="mailto:aparna.mane1998@gmail.com"
       class="inline-block px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-accent/90 transition-transform hover:scale-105"
     >
       Say Hello
