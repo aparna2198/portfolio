@@ -18,7 +18,7 @@ const profileImage = "/map-overlay.jpg";
   </div>
 
   <!-- Time Badge (Absolute) -->
-  <div class="absolute top-8 left-8 z-30">
+  <div class="absolute top-4 left-4 z-30">
     <div
       class="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 shadow-lg"
     >
@@ -37,40 +37,17 @@ const profileImage = "/map-overlay.jpg";
     </div>
   </div>
 
-  <!-- Content Layer -->
-  <div
-    class="relative z-10 w-full h-full p-8 flex flex-col justify-end pointer-events-none"
-  >
-    <!-- Middle/Bottom Text -->
-    <div class="max-w-md">
+  <div class="absolute inset-0 z-10 p-8 pointer-events-none">
+    <!-- Middle/Bottom Text (Absolute) -->
+    <div class="absolute bottom-8 left-8 max-w-md">
       <h2
         class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-2 leading-tight"
+        style="font-family: 'Comic Sans MS', 'Comic Sans', cursive;"
       >
-        Hello, <br />
-        I'm <span class="text-accent">Aparna.</span>
+        Hi, I'm <span class="text-accent">Aparna</span>
       </h2>
-      <p
-        class="text-secondary text-sm md:text-base font-medium flex items-center gap-2"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="text-accent"
-          ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-          ></path><circle cx="12" cy="10" r="3"></circle></svg
-        >
-        Mumbai, India
-      </p>
     </div>
   </div>
-
   <!-- Floating Profile Picture (Bottom Right) -->
   <div
     class="absolute bottom-6 right-6 md:bottom-10 md:right-10 w-24 h-32 md:w-32 md:h-44 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl rotate-3 group-hover:rotate-0 transition-all duration-500 bg-gray-900 group-hover:scale-105 z-20"
@@ -85,9 +62,9 @@ const profileImage = "/map-overlay.jpg";
     >
     </div>
   </div>
-
-  <div class="spotlight"></div>
 </div>
+
+<div class="spotlight"></div>
 
 <script>
   import maplibregl from "maplibre-gl";
@@ -123,7 +100,7 @@ const profileImage = "/map-overlay.jpg";
     container.innerHTML = "";
 
     // Coordinates for Mumbai
-    const mumbaiLandmark: [number, number] = [72.8677, 19.05]; // 19.0500° N, 72.8677° E
+    const mumbaiLandmark: [number, number] = [72.8777, 19.08]; // 19.0800° N, 72.8777° E
     const mumbaiHeart: [number, number] = [72.885, 19.01]; // Balanced centering for the region
 
     const map = new maplibregl.Map({
@@ -153,13 +130,14 @@ const profileImage = "/map-overlay.jpg";
 
       new maplibregl.Marker({ element: el })
         .setLngLat(mumbaiLandmark)
+        .setOffset([0, 15])
         .addTo(map);
 
       // Animation: zoom into the heart of the city
       setTimeout(() => {
         map.flyTo({
           center: mumbaiHeart,
-          zoom: 11,
+          zoom: 4.5, // Reduced zoom to 4.5 to show neighboring countries
           speed: 1.2,
           curve: 1,
           essential: true,
@@ -228,6 +206,9 @@ const profileImage = "/map-overlay.jpg";
   }
 
   #map {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
   }
