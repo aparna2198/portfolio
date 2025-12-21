@@ -39,19 +39,21 @@
 @layer base {
   html {
     font-family: var(--font-body);
-    background-color: var(--color-background);
+    background-color: var(--background);
+    background-image:
+      radial-gradient(var(--secondary) 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
     color: var(--color-primary);
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     min-height: 100vh;
-    background-image:
-      radial-gradient(var(--secondary) 0.5px, transparent 0.5px);
-    background-size: 24px 24px;
-    background-color: var(--background);
     -webkit-font-smoothing: antialiased;
     position: relative;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   body::before {
