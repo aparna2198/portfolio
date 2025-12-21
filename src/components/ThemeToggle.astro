@@ -1,15 +1,16 @@
 ---
+
 ---
 
 <button
   id="theme-toggle"
-  class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 focus:outline-none group overflow-hidden"
+  class="relative inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 focus:outline-none group overflow-hidden"
   aria-label="Toggle Theme"
 >
   <!-- Sun Icon -->
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="w-5 h-5 text-accent transition-transform duration-500 ease-spring group-hover:rotate-45 block dark:hidden"
+    class="w-4 h-4 md:w-5 md:h-5 text-accent transition-transform duration-500 ease-spring group-hover:rotate-45 block dark:hidden"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -20,13 +21,13 @@
       stroke-linejoin="round"
       stroke-width="2"
       d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    />
+    ></path>
   </svg>
-  
+
   <!-- Moon Icon -->
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="w-5 h-5 text-accent transition-transform duration-500 ease-spring group-hover:-rotate-12 hidden dark:block"
+    class="w-4 h-4 md:w-5 md:h-5 text-accent transition-transform duration-500 ease-spring group-hover:-rotate-12 hidden dark:block"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -37,38 +38,38 @@
       stroke-linejoin="round"
       stroke-width="2"
       d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-    />
+    ></path>
   </svg>
 </button>
 
 <script>
   function applyTheme(theme) {
-    if (theme === 'light') {
-      document.documentElement.classList.add('light');
-      document.documentElement.classList.remove('dark');
+    if (theme === "light") {
+      document.documentElement.classList.add("light");
+      document.documentElement.classList.remove("dark");
     } else {
-      document.documentElement.classList.remove('light');
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove("light");
+      document.documentElement.classList.add("dark");
     }
-    localStorage.setItem('theme', theme);
+    localStorage.setItem("theme", theme);
   }
 
   function handleToggleClick() {
-    const isLight = document.documentElement.classList.contains('light');
-    applyTheme(isLight ? 'dark' : 'light');
+    const isLight = document.documentElement.classList.contains("light");
+    applyTheme(isLight ? "dark" : "light");
   }
 
   // Setup on page load and after swaps
   function setup() {
-    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggle = document.getElementById("theme-toggle");
     if (themeToggle) {
-      themeToggle.removeEventListener('click', handleToggleClick);
-      themeToggle.addEventListener('click', handleToggleClick);
+      themeToggle.removeEventListener("click", handleToggleClick);
+      themeToggle.addEventListener("click", handleToggleClick);
     }
   }
 
   setup();
-  document.addEventListener('astro:after-swap', setup);
+  document.addEventListener("astro:after-swap", setup);
 </script>
 
 <style>
@@ -76,7 +77,7 @@
     border-color: rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.05);
   }
-  
+
   :root.light #theme-toggle:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
@@ -87,8 +88,16 @@
   }
 
   /* Hidden/Visible utility since Tailwind simple classes might be conflictual here with dark: */
-  :root.light .dark\:block { display: none !important; }
-  :root.light .dark\:hidden { display: block !important; }
-  :root:not(.light) .dark\:block { display: block !important; }
-  :root:not(.light) .dark\:hidden { display: none !important; }
+  :root.light .dark\:block {
+    display: none !important;
+  }
+  :root.light .dark\:hidden {
+    display: block !important;
+  }
+  :root:not(.light) .dark\:block {
+    display: block !important;
+  }
+  :root:not(.light) .dark\:hidden {
+    display: none !important;
+  }
 </style>
