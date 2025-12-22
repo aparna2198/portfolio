@@ -145,7 +145,7 @@ const skillCategories = [
           <p class="text-secondary max-w-2xl text-lg leading-relaxed mx-auto">
             I describe myself as a <span class="text-primary font-bold"
               >fanatical coder</span
-            > fueled by curiosity—what began as a self-taught journey has evolved
+            > fueled by curiosity. What began as a self-taught journey has evolved
             into 5+ years of engineering experience architecting high-performance
             backend systems, real-time platforms, and large-scale APIs, while contributing
             to open-source on GitHub and collaborating publicly across the developer
@@ -251,30 +251,35 @@ const skillCategories = [
     </div>
 
     <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
+      id="projects-scroll-container"
+      class="flex overflow-x-auto pb-20 gap-8 px-4 no-scrollbar"
+      style="scrollbar-width: none; -ms-overflow-style: none;"
     >
       {
-        projects.map((project, i) => (
-          <Card
-            href="#"
-            class={`h-full flex flex-col ${i === 0 || i === 3 ? "md:col-span-2" : ""}`}
+        projects.map((project, index) => (
+          <div
+            class={`flex-shrink-0 w-[350px] snap-center transition-transform duration-300 ${
+              index % 2 !== 0 ? "mt-16" : ""
+            }`}
           >
-            <div class="flex justify-between items-start mb-4">
-              <h3 class="text-2xl font-bold group-hover:text-accent transition-colors">
-                {project.title}
-              </h3>
-            </div>
-            <p class="text-secondary mb-8 flex-grow leading-relaxed">
-              {project.desc}
-            </p>
-            <div class="flex flex-wrap gap-2 mt-auto">
-              {project.tech.map((t) => (
-                <span class="text-xs font-mono text-accent/80 bg-accent/5 px-3 py-1.5 rounded-lg border border-accent/10 transition-colors group-hover:border-accent/30 group-hover:bg-accent/10">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </Card>
+            <Card class="h-full flex flex-col border-accent/20">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-bold group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+              </div>
+              <p class="text-secondary mb-8 flex-grow leading-relaxed">
+                {project.desc}
+              </p>
+              <div class="flex flex-wrap gap-2 mt-auto">
+                {project.tech.map((t) => (
+                  <span class="text-xs font-mono text-accent/80 bg-accent/5 px-3 py-1.5 rounded-lg border border-accent/10 transition-colors group-hover:border-accent/30 group-hover:bg-accent/10">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </Card>
+          </div>
         ))
       }
     </div>
@@ -336,7 +341,7 @@ const skillCategories = [
             >deeply passionate engineer</span
           > who loves <span class="text-primary font-bold"
             >solving problems</span
-          >—<span class="text-primary font-bold">writing code</span> because I love
+          >, <span class="text-primary font-bold">writing code</span> because I love
           it, <span class="text-primary font-bold">debugging</span> because I can’t
           help it, and <span class="text-primary font-bold"
             >building systems</span
@@ -385,8 +390,70 @@ const skillCategories = [
             class="text-primary font-bold text-lg hover:text-accent transition-colors tracking-tight"
             >LinkedIn</a
           >
+          <a
+            href="/resume.pdf"
+            download="Aparna_Resume.pdf"
+            class="text-primary font-bold text-lg hover:text-accent transition-colors tracking-tight flex items-center gap-2"
+          >
+            Resume
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-download"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" x2="12" y1="15" y2="3"></line>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    const initProjectScroll = () => {
+      const container = document.getElementById("projects-scroll-container");
+      if (!container) return;
+
+      let direction = 1; // 1 = right, -1 = left
+      const speed = 0.5; // Adjust speed as needed
+      let isPaused = false;
+      let animationId;
+
+      const animate = () => {
+        if (!isPaused) {
+          container.scrollLeft += speed * direction;
+
+          // Check bounds with a small buffer
+          if (
+            container.scrollLeft + container.clientWidth >=
+            container.scrollWidth - 1
+          ) {
+            direction = -1;
+          } else if (container.scrollLeft <= 0) {
+            direction = 1;
+          }
+        }
+        animationId = requestAnimationFrame(animate);
+      };
+
+      // Events
+      container.addEventListener("mouseenter", () => (isPaused = true));
+      container.addEventListener("mouseleave", () => (isPaused = false));
+
+      // Start
+      animate();
+    };
+
+    initProjectScroll();
+    document.addEventListener("astro:after-swap", initProjectScroll);
+  </script>
 </Layout>
