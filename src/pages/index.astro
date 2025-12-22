@@ -428,10 +428,19 @@ const skillCategories = [
       const speed = 0.5; // Adjust speed as needed
       let isPaused = false;
       let animationId;
+      let currentScroll = container.scrollLeft; // Float accumulator
 
       const animate = () => {
         if (!isPaused) {
-          container.scrollLeft += speed * direction;
+          // Update float
+          currentScroll += speed * direction;
+          container.scrollLeft = currentScroll;
+
+          // Manual scroll detection: if the actual scrollLeft drifted far from our float
+          // it means the user manually scrolled. Sync them up.
+          if (Math.abs(container.scrollLeft - currentScroll) > 1.5) {
+            currentScroll = container.scrollLeft;
+          }
 
           // Check bounds with a small buffer
           if (
@@ -439,16 +448,27 @@ const skillCategories = [
             container.scrollWidth - 1
           ) {
             direction = -1;
+            // Snap float to exact bound to prevent sticking
+            currentScroll = container.scrollWidth - container.clientWidth;
           } else if (container.scrollLeft <= 0) {
             direction = 1;
+            currentScroll = 0;
           }
         }
         animationId = requestAnimationFrame(animate);
       };
 
-      // Events
+      // Mouse Events
       container.addEventListener("mouseenter", () => (isPaused = true));
       container.addEventListener("mouseleave", () => (isPaused = false));
+
+      // Touch Events (Mobile)
+      container.addEventListener("touchstart", () => (isPaused = true), {
+        passive: true,
+      });
+      container.addEventListener("touchend", () => {
+        setTimeout(() => (isPaused = false), 1000); // Resume after a second
+      });
 
       // Start
       animate();
