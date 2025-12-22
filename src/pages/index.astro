@@ -422,16 +422,18 @@ const skillCategories = [
   <script>
     const initProjectScroll = () => {
       const container = document.getElementById("projects-scroll-container");
-      if (!container) return;
+      if (!container || container.dataset.scrollInitialized) return;
+      container.dataset.scrollInitialized = "true";
 
       let direction = 1; // 1 = right, -1 = left
       const speed = 0.5; // Adjust speed as needed
       let isPaused = false;
+      let isStopped = false; // Permanent stop flag
       let animationId;
       let currentScroll = container.scrollLeft; // Float accumulator
 
       const animate = () => {
-        if (!isPaused) {
+        if (!isPaused && !isStopped) {
           // Update float
           currentScroll += speed * direction;
           container.scrollLeft = currentScroll;
@@ -448,19 +450,35 @@ const skillCategories = [
             container.scrollWidth - 1
           ) {
             direction = -1;
-            // Snap float to exact bound to prevent sticking
+            // Snap float to exact bound prevent sticking
             currentScroll = container.scrollWidth - container.clientWidth;
           } else if (container.scrollLeft <= 0) {
+            if (direction === -1) {
+              // We have returned to the start after scrolling right. Stop.
+              currentScroll = 0;
+              container.scrollLeft = 0;
+              isStopped = true; // Stop fully
+              cancelAnimationFrame(animationId);
+              return;
+            }
             direction = 1;
             currentScroll = 0;
           }
         }
-        animationId = requestAnimationFrame(animate);
+        if (!isStopped) {
+          animationId = requestAnimationFrame(animate);
+        }
       };
 
       // Mouse Events
       container.addEventListener("mouseenter", () => (isPaused = true));
       container.addEventListener("mouseleave", () => (isPaused = false));
+
+      // Click Event (Stop on click)
+      container.addEventListener("click", () => {
+        isStopped = true;
+        cancelAnimationFrame(animationId);
+      });
 
       // Touch Events (Mobile)
       container.addEventListener("touchstart", () => (isPaused = true), {
