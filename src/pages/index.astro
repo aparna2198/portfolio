@@ -248,17 +248,23 @@ const skillCategories = [
         Featured Projects
       </h2>
       <div class="h-[1px] bg-primary/10 flex-grow ml-8 hidden md:block"></div>
+      <span class="text-sm font-mono text-accent/80 ml-4 hidden md:block"
+        >Scroll &rarr;</span
+      >
+    </div>
+    <div class="flex justify-end mb-4 md:hidden">
+      <span class="text-xs font-mono text-accent/80">Scroll &rarr;</span>
     </div>
 
     <div
       id="projects-scroll-container"
-      class="flex overflow-x-auto pb-20 gap-8 px-4 no-scrollbar"
-      style="scrollbar-width: none; -ms-overflow-style: none;"
+      class="flex overflow-x-auto pb-20 gap-8 px-4 no-scrollbar snap-x snap-mandatory"
+      style="scrollbar-width: none; -ms-overflow-style: none; mask-image: linear-gradient(to right, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);"
     >
       {
         projects.map((project, index) => (
           <div
-            class={`flex-shrink-0 w-[350px] snap-center transition-transform duration-300 ${
+            class={`flex-shrink-0 w-[85vw] md:w-[350px] snap-center transition-transform duration-300 ${
               index % 2 !== 0 ? "mt-16" : ""
             }`}
           >
@@ -420,79 +426,6 @@ const skillCategories = [
   </section>
 
   <script>
-    const initProjectScroll = () => {
-      const container = document.getElementById("projects-scroll-container");
-      if (!container || container.dataset.scrollInitialized) return;
-      container.dataset.scrollInitialized = "true";
-
-      let direction = 1; // 1 = right, -1 = left
-      const speed = 0.5; // Adjust speed as needed
-      let isPaused = false;
-      let isStopped = false; // Permanent stop flag
-      let animationId;
-      let currentScroll = container.scrollLeft; // Float accumulator
-
-      const animate = () => {
-        if (!isPaused && !isStopped) {
-          // Update float
-          currentScroll += speed * direction;
-          container.scrollLeft = currentScroll;
-
-          // Manual scroll detection: if the actual scrollLeft drifted far from our float
-          // it means the user manually scrolled. Sync them up.
-          if (Math.abs(container.scrollLeft - currentScroll) > 1.5) {
-            currentScroll = container.scrollLeft;
-          }
-
-          // Check bounds with a small buffer
-          if (
-            container.scrollLeft + container.clientWidth >=
-            container.scrollWidth - 1
-          ) {
-            direction = -1;
-            // Snap float to exact bound prevent sticking
-            currentScroll = container.scrollWidth - container.clientWidth;
-          } else if (container.scrollLeft <= 0) {
-            if (direction === -1) {
-              // We have returned to the start after scrolling right. Stop.
-              currentScroll = 0;
-              container.scrollLeft = 0;
-              isStopped = true; // Stop fully
-              cancelAnimationFrame(animationId);
-              return;
-            }
-            direction = 1;
-            currentScroll = 0;
-          }
-        }
-        if (!isStopped) {
-          animationId = requestAnimationFrame(animate);
-        }
-      };
-
-      // Mouse Events
-      container.addEventListener("mouseenter", () => (isPaused = true));
-      container.addEventListener("mouseleave", () => (isPaused = false));
-
-      // Click Event (Stop on click)
-      container.addEventListener("click", () => {
-        isStopped = true;
-        cancelAnimationFrame(animationId);
-      });
-
-      // Touch Events (Mobile)
-      container.addEventListener("touchstart", () => (isPaused = true), {
-        passive: true,
-      });
-      container.addEventListener("touchend", () => {
-        setTimeout(() => (isPaused = false), 1000); // Resume after a second
-      });
-
-      // Start
-      animate();
-    };
-
-    initProjectScroll();
-    document.addEventListener("astro:after-swap", initProjectScroll);
+    // Script removed as per request to replace auto-scroll with visual cues
   </script>
 </Layout>
