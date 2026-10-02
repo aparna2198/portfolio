@@ -104,10 +104,9 @@ const profileImage = "/map-overlay.jpg";
     // Clear previous map if any
     container.innerHTML = "";
 
-    // Coordinates for Mumbai
-    const mumbaiLandmark: [number, number] = [72.8777, 19.08]; // 19.0800° N, 72.8777° E
-    const mumbaiHeart: [number, number] = [72.885, 19.01]; // Balanced centering for the region
-
+    // Coordinates for Bangalore
+    const bangaloreLandmark: [number, number] = [77.5946, 12.9716]; // 12.9716° N, 77.5946° E
+    const bangaloreHeart: [number, number] = [77.6, 12.97]; // Balanced centering for the region
     const map = new maplibregl.Map({
       container: "map",
       style:
@@ -134,14 +133,14 @@ const profileImage = "/map-overlay.jpg";
       el.appendChild(pulse);
 
       new maplibregl.Marker({ element: el })
-        .setLngLat(mumbaiLandmark)
+        .setLngLat(bangaloreLandmark)
         .setOffset([0, 15])
         .addTo(map);
 
       // Animation: zoom into the heart of the city
       setTimeout(() => {
         map.flyTo({
-          center: mumbaiHeart,
+          center: bangaloreHeart,
           zoom: 4.5, // Reduced zoom to 4.5 to show neighboring countries
           speed: 1.2,
           curve: 1,
